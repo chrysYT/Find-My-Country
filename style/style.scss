@@ -34,7 +34,6 @@ body {
   min-height: 100vh;
   background-color: $bg-clr;
   transition: background 0.2s ease;
-  background-color: red;
 
   &.active {
     background-color: $night-clr;
