@@ -726,12 +726,19 @@ async function getApi(url) {
 
   const searchbar = document.querySelector(".header .search-bar .search");
 
+  const search_icon = document.querySelector(".header .search-bar ion-icon");
+
   const search_array = [];
 
   searchbar.addEventListener("keyup", searchResults);
 
   function searchResults(e) {
     search = e.target.value;
+
+    search_icon.addEventListener("click", () => {
+      filterSearch();
+      filterSearchResults();
+    });
 
     if (e.code == "Enter") {
       filterSearch();
