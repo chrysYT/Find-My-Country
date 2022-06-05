@@ -1,32 +1,31 @@
-const main_content = document.querySelector('.main-content');
-const loading = document.querySelector('.loading');
-const header = document.querySelector('.header');
+const main_content = document.querySelector(".main-content");
+const loading = document.querySelector(".loading");
+const header = document.querySelector(".header");
 
-const API_URL = 'https://restcountries.com/v3.1/all';
+const API_URL = "https://restcountries.com/v3.1/all";
 
 const all_continents = document.querySelector(
-  '.switch-continent .all-continents'
+  ".switch-continent .all-continents"
 );
-const africa = document.querySelector('.switch-continent .africa');
-const asia = document.querySelector('.switch-continent .asia');
-const europe = document.querySelector('.switch-continent .europe');
-const oceania = document.querySelector('.switch-continent .oceania');
-const antarctica = document.querySelector('.switch-continent .antarctica');
-const n_america = document.querySelector('.switch-continent .n-america');
-const s_america = document.querySelector('.switch-continent .s-america');
+const africa = document.querySelector(".switch-continent .africa");
+const asia = document.querySelector(".switch-continent .asia");
+const europe = document.querySelector(".switch-continent .europe");
+const oceania = document.querySelector(".switch-continent .oceania");
+const antarctica = document.querySelector(".switch-continent .antarctica");
+const n_america = document.querySelector(".switch-continent .n-america");
+const s_america = document.querySelector(".switch-continent .s-america");
 
 async function getApi(url) {
-  main_content.innerHTML = '';
+  main_content.innerHTML = "";
   const response = await fetch(url);
   const data = await response.json();
 
   const DataSort = [];
 
   for (let i = 0; i < data.length; i++) {
-    const commonnames = data[i].name['common'].split(',');
+    const commonnames = data[i].name["common"].split(",");
 
-    const cap = data[i].capital;
-    const capital = cap ? cap.toString() : null;
+    const capital = data[i].capital ? data[i].capital.toString() : null;
 
     const official_name = data[i].altSpellings[data[i].altSpellings.length - 1];
 
@@ -40,7 +39,7 @@ async function getApi(url) {
       ? Object.values(data[i].currencies)[0].name
       : null;
 
-    const ccode = data[i].idd['root'] + data[i].idd['suffixes'];
+    const ccode = data[i].idd["root"] + data[i].idd["suffixes"];
 
     const Timezone = data[i].timezones[0];
 
@@ -50,9 +49,9 @@ async function getApi(url) {
 
     const UNMember = data[i].unMember;
 
-    const countryFlag = data[i].flags['png'];
+    const countryFlag = data[i].flags["png"];
 
-    const CoatOfArms = data[i].coatOfArms['png'];
+    const CoatOfArms = data[i].coatOfArms["png"];
 
     DataSort.push(commonnames);
     commonnames.push(official_name);
@@ -152,9 +151,9 @@ async function getApi(url) {
   const South_america_array = [];
 
   //filterAll
-  all_continents.addEventListener('click', filterAll);
+  all_continents.addEventListener("click", filterAll);
   function filterAll() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < DataSort.length; j++) {
       const Country_Flag = DataSort[j][11];
@@ -171,8 +170,8 @@ async function getApi(url) {
       const independent = DataSort[j][9];
       const unMember = DataSort[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -210,7 +209,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
 
@@ -224,29 +223,29 @@ async function getApi(url) {
     Africa_array.push(Africa_list);
   }
 
-  const africa_only = Africa_array.filter((data) => data.includes('Africa'));
+  const africa_only = Africa_array.filter((data) => data.includes("Africa"));
 
-  africa.addEventListener('click', filterAfrica);
+  africa.addEventListener("click", filterAfrica);
   function filterAfrica() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
-    for (let j = 0; j < africa_only.length; j++) {
-      const Country_Flag = africa_only[j][11];
-      const CoatOfArms = africa_only[j][12];
-      const country_name = africa_only[j][0];
-      const country_name_off = africa_only[j][1];
-      const country_capital = africa_only[j][2];
-      const continent = africa_only[j][3];
-      const language = africa_only[j][4];
-      const currency = africa_only[j][5];
-      const county_code = africa_only[j][6];
-      const timezone = africa_only[j][7];
-      const population = africa_only[j][8];
-      const independent = africa_only[j][9];
-      const unMember = africa_only[j][10];
+    for (let f = 0; f < africa_only.length; f++) {
+      const Country_Flag = africa_only[f][11];
+      const CoatOfArms = africa_only[f][12];
+      const country_name = africa_only[f][0];
+      const country_name_off = africa_only[f][1];
+      const country_capital = africa_only[f][2];
+      const continent = africa_only[f][3];
+      const language = africa_only[f][4];
+      const currency = africa_only[f][5];
+      const county_code = africa_only[f][6];
+      const timezone = africa_only[f][7];
+      const population = africa_only[f][8];
+      const independent = africa_only[f][9];
+      const unMember = africa_only[f][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -284,7 +283,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   //===========================
@@ -296,12 +295,12 @@ async function getApi(url) {
   }
 
   const antartica_only = Antartica_array.filter((data) =>
-    data.includes('Antarctica')
+    data.includes("Antarctica")
   );
 
-  antarctica.addEventListener('click', filterAntarctica);
+  antarctica.addEventListener("click", filterAntarctica);
   function filterAntarctica() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < antartica_only.length; j++) {
       const Country_Flag = antartica_only[j][11];
@@ -318,8 +317,8 @@ async function getApi(url) {
       const independent = antartica_only[j][9];
       const unMember = antartica_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -357,7 +356,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   //===========================
@@ -368,11 +367,11 @@ async function getApi(url) {
     Asia_array.push(Asia_list);
   }
 
-  const asia_only = Asia_array.filter((data) => data.includes('Asia'));
+  const asia_only = Asia_array.filter((data) => data.includes("Asia"));
 
-  asia.addEventListener('click', filterAsia);
+  asia.addEventListener("click", filterAsia);
   function filterAsia() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < asia_only.length; j++) {
       const Country_Flag = asia_only[j][11];
@@ -389,8 +388,8 @@ async function getApi(url) {
       const independent = asia_only[j][9];
       const unMember = asia_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -428,7 +427,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   // filterAsia();
@@ -441,12 +440,12 @@ async function getApi(url) {
   }
 
   const Australia_only = Australia_array.filter((data) =>
-    data.includes('Oceania')
+    data.includes("Oceania")
   );
 
-  oceania.addEventListener('click', filterOceania);
+  oceania.addEventListener("click", filterOceania);
   function filterOceania() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < Australia_only.length; j++) {
       const Country_Flag = Australia_only[j][11];
@@ -463,8 +462,8 @@ async function getApi(url) {
       const independent = Australia_only[j][9];
       const unMember = Australia_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -502,7 +501,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   // filterOceania();
@@ -514,11 +513,11 @@ async function getApi(url) {
     Europe_array.push(Europe_list);
   }
 
-  const Europe_only = Europe_array.filter((data) => data.includes('Europe'));
+  const Europe_only = Europe_array.filter((data) => data.includes("Europe"));
 
-  europe.addEventListener('click', filterEurope);
+  europe.addEventListener("click", filterEurope);
   function filterEurope() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < Europe_only.length; j++) {
       const Country_Flag = Europe_only[j][11];
@@ -535,8 +534,8 @@ async function getApi(url) {
       const independent = Europe_only[j][9];
       const unMember = Europe_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -574,7 +573,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   //==========================
@@ -586,12 +585,12 @@ async function getApi(url) {
   }
 
   const north_america_only = North_america_array.filter((data) =>
-    data.includes('North America')
+    data.includes("North America")
   );
 
-  n_america.addEventListener('click', filterNAmerica);
+  n_america.addEventListener("click", filterNAmerica);
   function filterNAmerica() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < north_america_only.length; j++) {
       const Country_Flag = north_america_only[j][11];
@@ -608,8 +607,8 @@ async function getApi(url) {
       const independent = north_america_only[j][9];
       const unMember = north_america_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -647,7 +646,7 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   //==========================
@@ -659,12 +658,12 @@ async function getApi(url) {
   }
 
   const south_america_only = South_america_array.filter((data) =>
-    data.includes('South America')
+    data.includes("South America")
   );
 
-  s_america.addEventListener('click', filterSAmerica);
+  s_america.addEventListener("click", filterSAmerica);
   function filterSAmerica() {
-    main_content.innerHTML = '';
+    main_content.innerHTML = "";
 
     for (let j = 0; j < south_america_only.length; j++) {
       const Country_Flag = south_america_only[j][11];
@@ -681,8 +680,8 @@ async function getApi(url) {
       const independent = south_america_only[j][9];
       const unMember = south_america_only[j][10];
 
-      const country = document.createElement('div');
-      country.classList.add('country');
+      const country = document.createElement("div");
+      country.classList.add("country");
 
       country.innerHTML = `<img src="" />
       <div class="coat-of-arms">
@@ -720,36 +719,96 @@ async function getApi(url) {
 
       main_content.appendChild(country);
 
-      loading.classList.add('active');
+      loading.classList.add("active");
     }
   }
   //==========================
 
-  //search results
+  const searchbar = document.querySelector(".header .search-bar .search");
+
   const search_array = [];
 
-  const search = document.querySelector('.search-bar .search');
+  searchbar.addEventListener("keyup", searchResults);
 
-  function filterSearch() {
-    search.addEventListener('keyup', (e) => {
-      const search_item = e.target.value;
+  function searchResults(e) {
+    search = e.target.value;
 
-      for (let x = 0; x < DataSort.length; x++) {
-        search_array.push(DataSort[x]);
-      }
-
-      const searchData = search_array.filter((results) =>
-        results.includes(search_item)
-      );
-
-      console.log(searchData);
-    });
+    if (e.code == "Enter") {
+      filterSearch();
+      filterSearchResults();
+      e.target.value = "";
+    }
   }
 
-  filterSearch();
+  const filterSearch = () => {
+    for (let i = 0; i < DataSort.length; i++) {
+      search_array.push(DataSort[i]);
+    }
 
-  const scroll_up = document.querySelector('.scroll-up');
-  const country = document.querySelectorAll('.main-content .country');
+    search_only = search_array.filter((data) => data.includes(search));
+  };
+
+  function filterSearchResults() {
+    main_content.innerHTML = "";
+
+    const Country_Flag = search_only[0][11];
+    const CoatOfArms = search_only[0][12];
+    const country_name = search_only[0][0];
+    const country_name_off = search_only[0][1];
+    const country_capital = search_only[0][2];
+    const continent = search_only[0][3];
+    const language = search_only[0][4];
+    const currency = search_only[0][5];
+    const county_code = search_only[0][6];
+    const timezone = search_only[0][7];
+    const population = search_only[0][8];
+    const independent = search_only[0][9];
+    const unMember = search_only[0][10];
+
+    const country = document.createElement("div");
+    country.classList.add("country");
+
+    country.innerHTML = `<img src="" />
+      <div class="coat-of-arms">
+      <img src=${CoatOfArms} />
+      </div>
+      <div class="flag--name">
+  
+      <div class="flag">
+      <img src=${Country_Flag} />
+      </div>
+      <h1>${country_name_off}</h1>
+  
+      </div>
+  
+      <h3>
+  
+      ${country_name}
+  
+      <div class="details">
+      <h6>Capital: <p>${country_capital} </p> </h6>
+      <h6>continent:<p>${continent} </p> </h6>
+      <h6>language/s:<p>${language} </p> </h6>
+      <h6>currency:<p>${currency} </p> </h6>
+      <h6>country-code:<p>${county_code} </p> </h6>
+      <h6>timezone:<p>${timezone} </p> </h6>
+      <h6>polulation:<p>${population} </p> </h6>
+      <h6>independent:<p>${independent} </p> </h6>
+      <h6>UN-Member:<p>${unMember} </p> </h6>
+      </div>
+      
+      </h3>
+  
+      <div class="more-details"><span>more</span><ion-icon name="chevron-down-outline"></ion-icon></div>
+      `;
+
+    main_content.append(country);
+
+    loading.classList.add("active");
+  }
+
+  const scroll_up = document.querySelector(".scroll-up");
+  const country = document.querySelectorAll(".main-content .country");
 
   function scrollAnimation() {
     const window_height = window.innerHeight;
@@ -760,66 +819,64 @@ async function getApi(url) {
     var country_Top = country[5].getBoundingClientRect().top;
 
     if (main_content_Top < window_height - animationPoint) {
-      header.classList.add('active');
+      header.classList.add("active");
     } else {
-      header.classList.remove('active');
+      header.classList.remove("active");
     }
 
     if (country_Top < window_height - animationPoint) {
-      scroll_up.classList.add('active');
+      scroll_up.classList.add("active");
     } else {
-      scroll_up.classList.remove('active');
+      scroll_up.classList.remove("active");
     }
   }
 
-  window.addEventListener('scroll', scrollAnimation);
+  window.addEventListener("scroll", scrollAnimation);
 }
 
 getApi(API_URL);
 
-const switch_mode = document.querySelector('.switch-mode');
-const toggle = document.querySelector('.switch-mode .toggle');
+const switch_mode = document.querySelector(".switch-mode");
+const toggle = document.querySelector(".switch-mode .toggle");
 
-switch_mode.addEventListener('click', () => {
-  toggle.classList.toggle('active');
-  document.body.classList.toggle('active');
+switch_mode.addEventListener("click", () => {
+  toggle.classList.toggle("active");
+  document.body.classList.toggle("active");
 });
 
-const switch_opt = document.querySelectorAll('.switch-continent h3');
+const switch_opt = document.querySelectorAll(".switch-continent h3");
 
 switch_opt.forEach((opt) => {
-  opt.addEventListener('click', () => {
+  opt.addEventListener("click", () => {
     removeActives();
-    opt.classList.add('active');
+    opt.classList.add("active");
   });
 });
 
 const removeActives = () => {
   switch_opt.forEach((opt) => {
-    opt.classList.remove('active');
+    opt.classList.remove("active");
   });
 };
 
-const openMenu = document.querySelector('.open-menu');
-const switch_continent = document.querySelector('.switch-continent');
-const continents = document.querySelectorAll('.switch-continent h3');
+const openMenu = document.querySelector(".open-menu");
+const switch_continent = document.querySelector(".switch-continent");
+const continents = document.querySelectorAll(".switch-continent h3");
 
-openMenu.addEventListener('click', () => {
-  openMenu.classList.toggle('active');
-  switch_continent.classList.toggle('active');
+openMenu.addEventListener("click", () => {
+  openMenu.classList.toggle("active");
+  switch_continent.classList.toggle("active");
 
   continents.forEach((continent) => {
-    continent.addEventListener('click', () => {
+    continent.addEventListener("click", () => {
       setTimeout(() => {
-        openMenu.classList.remove('active');
-        switch_continent.classList.remove('active');
+        openMenu.classList.remove("active");
+        switch_continent.classList.remove("active");
       }, 300);
     });
   });
-  main_content.addEventListener('click', () => {
-    openMenu.classList.remove('active');
-    switch_continent.classList.remove('active');
+  main_content.addEventListener("click", () => {
+    openMenu.classList.remove("active");
+    switch_continent.classList.remove("active");
   });
 });
-
-// console.log(((data[0] || {}).languages || {}));
