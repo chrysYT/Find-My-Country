@@ -738,6 +738,7 @@ async function getApi(url) {
     search_icon.addEventListener("click", () => {
       filterSearch();
       filterSearchResults();
+      e.target.value = "";
     });
 
     if (e.code == "Enter") {
